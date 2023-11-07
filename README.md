@@ -4,4 +4,5 @@
 https://www.freecodecamp.org/news/how-to-perform-crud-operations-using-react/
 
 # NPM
-* npm install semantic-ui-react semantic-ui-css
+* npm install --save sequelize
+* npm install --save sqlite3
