@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4",
+    "sequelize": "^6.34.0",
+    "sqlite3": "^5.1.6"
+  }
+}
