@@ -11,3 +11,5 @@ module.exports = {
       idle: 10000
     }
   };
+
+//   Path: app/models/tutorial.model.js
