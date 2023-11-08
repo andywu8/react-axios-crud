@@ -4,10 +4,11 @@ const sequelize = new Sequelize({
     storage: "./app/db/database.sqlite"
   });
 
+const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.tutorials = require("./user.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
 
 module.exports = db;
