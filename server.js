@@ -1,9 +1,15 @@
-const db = require("./app/models");
+const { Sequelize } = require('sequelize');
 
-db.sequelize.sync()
-  .then(() => {
-    console.log("Synced db.");
-  })
-  .catch((err) => {
-    console.log("Failed to sync db: " + err.message);
-  });
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: "./app/db/database.sqlite"
+});
+
+// const db = require("./app/models");
+
+try {
+  await sequelize.authenticate();
+  console.log('Connection has been established successfully.');
+} catch (error) {
+  console.error('Unable to connect to the database:', error);
+}
