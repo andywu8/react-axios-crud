@@ -6,6 +6,7 @@ class UserDataService {
   }
 
   create(data) {
+    console.log("data in user service", data);
     return http.post("/users", data);
   }
 

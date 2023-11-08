@@ -1,7 +1,7 @@
 import React from "react";
 import UserDataService from "../services/user.service";
-import { useState, } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 export default function Create() {
     const { register, handleSubmit, reset } = useForm()
@@ -13,9 +13,31 @@ export default function Create() {
         reset();
     }
 
+
     function saveUser(data) {
-        UserDataService.create(data);
+        // console.log("data", data);
+        axios({
+            method: "post",
+            url: "http://localhost:8080/api/users",
+            data: data,
+            headers: { "Content-Type": "application/json" },
+          })
+        //     .then(({ data }) => {
+        //         console.log("axios check here");
+        //         console.log(data);
+        //     })
+        //     .catch((err) => {
+        //       console.error(err.toJSON());
+        //     })
+        // UserDataService.create(data)
+        // .then((response) => {
+        //   console.log(response.data);
+        // })
+        // .catch((e) => {
+        //   console.log(e);
+        // });
     }
+
 
 
 
