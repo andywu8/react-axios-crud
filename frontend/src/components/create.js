@@ -2,53 +2,43 @@ import React from "react";
 import UserDataService from "../services/user.service";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-
+import { useState } from "react";
 export default function Create() {
-    const { register, handleSubmit, reset } = useForm()
-    const onError = (errors, e) => console.log(errors, e)
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
 
-    function onSubmit(data, e){
-        console.log(data, e)
-        saveUser(data);
-        reset();
-    }
-
-
-    function saveUser(data) {
-        // console.log("data", data);
-        axios({
-            method: "post",
-            url: "http://localhost:8080/api/users",
-            data: data,
-            headers: { "Content-Type": "application/json" },
-          })
-        //     .then(({ data }) => {
-        //         console.log("axios check here");
-        //         console.log(data);
-        //     })
-        //     .catch((err) => {
-        //       console.error(err.toJSON());
-        //     })
-        // UserDataService.create(data)
-        // .then((response) => {
-        //   console.log(response.data);
-        // })
-        // .catch((e) => {
-        //   console.log(e);
+    function handleSubmit(e){
+        e.preventDefault();
+        // axios.post("http://localhost:8080/api/users", data, {
+        //     headers: headers
+        //   }).catch((err) => {
+        //     console.log("error message for getting: " + err.message);
         // });
+        saveUser();
+        resetValues();
+    }
+    function resetValues(){
+        setFirstName("");
+        setLastName("");
     }
 
-
-
-
+    function saveUser() {
+        console.log(firstName);
+        console.log(lastName);
+        axios.post(`http://localhost:8080/api/users`, 
+        {
+            firstName: firstName,
+            lastName: lastName
+        })
+    }
     return (
         <div>
             <h1>Create</h1>
-            <form onSubmit={handleSubmit(onSubmit, onError)}>
+            <form onSubmit={handleSubmit}>
                 <label>First Name</label>
-                <input {...register("firstName")} />
+                <input value={firstName} onChange={e=>setFirstName(e.target.value)}/>
                 <label>Last Name</label>
-                <input {...register("lastName")} />
+                <input value={lastName} onChange={e=>setLastName(e.target.value)}/>
                 <button type="submit">Submit</button>
             </form>
         </div>
